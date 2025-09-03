@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coastal Tourism Safety App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h1>Coastal Tourism Safety</h1>
+    <p>Real-time suitability of beaches for recreational activities</p>
+
+    <div id="beach-list"></div>
+  </div>
+
+  <!-- Map Section -->
+  <div id="map"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

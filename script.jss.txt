@@ -1,0 +1,47 @@
+// Initialize Map
+var map = L.map("map").setView([15.5, 80.0], 5);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: "&copy; OpenStreetMap contributors"
+}).addTo(map);
+
+// Example Beaches with Status
+var beaches = [
+  { name: "Baga Beach, Goa", coords: [15.552, 73.755], status: "suitable" },
+  { name: "Marina Beach, Chennai", coords: [13.049, 80.282], status: "caution" },
+  { name: "Puri Beach, Odisha", coords: [19.810, 85.831], status: "not-suitable" }
+];
+
+// Function to assign color
+function getColor(status) {
+  if (status === "suitable") return "green";
+  if (status === "caution") return "orange";
+  return "red";
+}
+
+// Add Markers & Update Sidebar
+var beachList = document.getElementById("beach-list");
+
+beaches.forEach((beach) => {
+  // Add map marker
+  L.circleMarker(beach.coords, {
+    radius: 10,
+    fillColor: getColor(beach.status),
+    color: "#555",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+  })
+    .addTo(map)
+    .bindPopup(`<b>${beach.name}</b><br>Status: ${beach.status}`);
+
+  // Add to sidebar
+  let div = document.createElement("div");
+  div.classList.add("beach");
+  if (beach.status === "suitable") div.classList.add("green");
+  else if (beach.status === "caution") div.classList.add("yellow");
+  else div.classList.add("red");
+
+  div.innerHTML = `<h2>${beach.name}</h2><p>Status: ${beach.status}</p>`;
+  beachList.appendChild(div);
+});
